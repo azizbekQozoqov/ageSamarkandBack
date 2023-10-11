@@ -46,15 +46,14 @@ INSTALLED_APPS = [
 
     'data.apps.DataConfig',
     'api.apps.ApiConfig',
-
-    'corsheaders',
+    'front.apps.FrontConfig'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware', # if not works
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -68,7 +67,9 @@ ROOT_URLCONF = 'ageSamarkandBack.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR/'templates'
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -80,9 +81,8 @@ TEMPLATES = [
         },
     },
 ]
-GDAL_LIBRARY_PATH = r"C:\Users\Azizbek\Documents\ageSamarkand\ageSamarkandBack\env\Lib\site-packages\osgeo\gdal304.dll"
-GEOS_LIBRARY_PATH = r"C:\Users\Azizbek\Documents\ageSamarkand\ageSamarkandBack\env\Lib\site-packages\osgeo\geos_c.dll"
-# GDAL_LIBRARY_PATH = r"C:\Users\Azizbek\Documents\ageSamarkand\ageSamarkandBack\env\Lib\site-packages\osgeo\gdal.py"
+GDAL_LIBRARY_PATH = r"C:\Users\Azizbek\Documents\ageSamarkand\ageSamarkandBack\env\Lib\site-packages\osgeo\gdal304.dll" # comment it before deploy
+GEOS_LIBRARY_PATH = r"C:\Users\Azizbek\Documents\ageSamarkand\ageSamarkandBack\env\Lib\site-packages\osgeo\geos_c.dll" # comment it before deploy
 
 WSGI_APPLICATION = 'ageSamarkandBack.wsgi.application'
 
@@ -138,7 +138,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+# Add these new lines
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

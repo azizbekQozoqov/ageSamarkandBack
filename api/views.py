@@ -37,11 +37,16 @@ def create_building_json(object: Building):
 class CreateBuilding(View):
 
     def post(self, request: request.HttpRequest, *args, **kwargs):
-
-        # building_type = BuildingType.objects.all()
-
+        
         body = json.loads(request.body)
         body_props = body['properties']
+
+        building = Building.objects.filter(id=body_props['@id'])
+        if building:
+            return JsonResponse({'success': False, 'message':'Building already exist'})
+
+        
+        
         building_type = BuildingType.objects.all()[0]
 
         building = Building.objects.create(id=body_props['@id'], year=0, address=body_props['d_address'], type=building_type, poly=Polygon(body['geometry']['coordinates'][0])).save()
