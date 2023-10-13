@@ -1,5 +1,5 @@
 import json
-from django.shortcuts import render
+from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.views import View
 from django.views.generic import TemplateView
 from data import models
@@ -26,19 +26,20 @@ class Index(View):
 class MapAdminPage(View):
     def get(self, request, *args, **kwargs):
         buildings = models.Building.objects.all()
+        all_building_types = models.BuildingType.objects.all()
         data = []
 
         for i in buildings:
             data.append(i)
 
-        context = {"data": data}
+        context = {"data": data, 'all_building_types':all_building_types}
         return render(request, 'admin.html', context=context)
     
     def post(sef, request: HttpRequest, *args, **kwargs):
         
         # req = request.body.decode("utf-8").split('&')
         building = Building.objects.filter(id = request.POST.get('id'))
-        building_types = BuildingType.objects.all()
+        building_types = BuildingType.objects.filter(name = request.POST.get('type'))
 
         if not building:
             return JsonResponse({'success': False, 'message': 'Building was not found'})
@@ -57,6 +58,8 @@ class MapAdminPage(View):
             for i in buildings:
                 data.append(i)
 
+
             context = {"data": data}
-            return render(request, 'admin.html', context=context)
+            # return render(request, 'admin.html', context=context)
+            return HttpResponseRedirect('/map-admin/')
         

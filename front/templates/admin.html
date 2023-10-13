@@ -1,49 +1,63 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AGESAMARKAND</title>
 
     <!-- LEAFLET CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
 
     <!-- LEAFLET JS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
 
     <!-- BOOTSTRAP CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
 
     <!-- static css -->
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
     <!-- static js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </head>
 
-
-
-</head>
-
-<body>
-
+  <body>
     <div id="map"></div>
 
     <div class="popup">
-        <div class="popup-item close">
-            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" fill="#ffffff"
-                onclick="$('.popup').hide()">
-                <path
-                    d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z" />
-            </svg>
-        </div>
-        <!-- <div class="popup-item images">
+      <div class="popup-item close">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="1em"
+          viewBox="0 0 384 512"
+          fill="#ffffff"
+          onclick="$('.popup').hide()"
+        >
+          <path
+            d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z"
+          />
+        </svg>
+      </div>
+      <!-- <div class="popup-item images">
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -71,89 +85,111 @@
                 </button>
             </div>
         </div> -->
-        <form action="/map-admin/" method="post">
+      <form action="/map-admin/" method="post">
+        <div class="popup-item id">
+          <span class="popup-item-title text-secondary">ID: </span> <br />
+          <input name="id" class="popup-item-data" />
+        </div>
 
-            <div class="popup-item id">
-                <span class="popup-item-title text-secondary">ID: </span> <br>
-                <input name="id" class="popup-item-data" disabled />
-            </div>
-
-            <div class="popup-item year">
-
-                <span class="popup-item-title text-secondary">Year of construction: </span> <br>
-                <input name="year" class="popup-item-data" />
-
-
-            </div>
-            <div class="popup-item address">
-                <span class="popup-item-title text-secondary">Adress: </span> <br>
-                <textarea class="popup-item-data" name="address" id="address" cols="25" rows="7">
-
-            </textarea>
-
-            </div>
-            <div class="popup-item floors">
-                <span class="popup-item-title text-secondary">Number of floors: </span> <br>
-                <input class="popup-item-data" name="floors" />
-
-            </div>
-            <div class="popup-item type">
-                <span class="popup-item-title text-secondary">Building type: </span> <br>
-                <input class="popup-item-data" name="type" />
-
-            </div>
-            <input type="submit" value="UPDATE">
-        </form>
+        <div class="popup-item year">
+          <span class="popup-item-title text-secondary"
+            >Year of construction:
+          </span>
+          <br />
+          <input name="year" class="popup-item-data" />
+        </div>
+        <div class="popup-item address">
+          <span class="popup-item-title text-secondary">Adress: </span> <br />
+          <textarea
+            class="popup-item-data"
+            name="address"
+            id="address"
+            cols="25"
+            rows="7"
+          >
+          </textarea>
+        </div>
+        <div class="popup-item floors">
+          <span class="popup-item-title text-secondary"
+            >Number of floors:
+          </span>
+          <br />
+          <input class="popup-item-data" name="floors" />
+        </div>
+        <div class="popup-item type">
+          <span class="popup-item-title text-secondary">Building type: </span>
+          <br />
+          <select name="type" class="popup-item-data">
+            {% for i in all_building_types %}
+              <option value="{{i.name}}">
+                {{i.name}}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+        <input type="submit" value="UPDATE" />
+      </form>
     </div>
 
     <script>
-        var DATA = [];
-        function showPopUp(e) {
-            let e_props = e.target.feature.properties;
-            $('.popup .popup-item.year .popup-item-data').val(e_props.year);
-            $('.popup .popup-item.id .popup-item-data').val(e_props['@id']);
-            $('.popup .popup-item.address .popup-item-data').val(e_props.address);
-            $('.popup .popup-item.floors .popup-item-data').val(e_props.floors);
-            $('.popup .popup-item.type .popup-item-data').val(e_props.type);
-            $('.popup').show();
-            console.log(e_props)
-        };
+      var DATA = [];
+      function showPopUp(e) {
+        let e_props = e.target.feature.properties;
+        $(".popup .popup-item.year .popup-item-data").val(e_props.year);
+        $(".popup .popup-item.id .popup-item-data").val(e_props["@id"]);
+        $(".popup .popup-item.address .popup-item-data").val(e_props.address);
+        $(".popup .popup-item.floors .popup-item-data").val(e_props.floors);
+        // $(`.popup .popup-item.type .popup-item-data option[value='${e_props.type}']`).val(e_props.type);
+        for(i of $(".popup .popup-item.type .popup-item-data")[0]) {
+          if ($(i).val() == e_props.type) {
+            $(i).attr('selected', 'selected');
+          }
+        }
+
+        console.log(e_props.type)
+        $(".popup").show();
+        console.log(e_props);
+      }
     </script>
     {% for i in data %}
     <script>
-        DATA.push({
-            "type": "Feature",
-            "properties": {
-                "@id": "{{i.id}}",
-                "year": "{{i.year}}",
-                "address": "{{i.address}}",
-                "floors": "{{i.floors}}",
-                "floors": "{{i.floors}}",
-                "type": "{{i.type}}"
-            },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": Array(JSON.parse("{{ i.poly.coords.0 }}".replace(/\(/g, '[').replace(/\)/g, ']')))
-            },
-            "id": "{{i.id}}",
-            "success": true
-
-        });
+      DATA.push({
+        type: "Feature",
+        properties: {
+          "@id": "{{i.id}}",
+          year: "{{i.year}}",
+          address: "{{i.address}}",
+          floors: "{{i.floors}}",
+          floors: "{{i.floors}}",
+          type: "{{i.type}}",
+        },
+        geometry: {
+          type: "Polygon",
+          coordinates: Array(
+            JSON.parse(
+              "{{ i.poly.coords.0 }}".replace(/\(/g, "[").replace(/\)/g, "]")
+            )
+          ),
+        },
+        id: "{{i.id}}",
+        success: true,
+      });
     </script>
     {% endfor %}
 
-
     <!-- BOOTSTRAP JS -->
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-        crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
 
     <script src="{% static 'map.js' %}"></script>
-
-</body>
-
+  </body>
 </html>
