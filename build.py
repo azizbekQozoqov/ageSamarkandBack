@@ -14,6 +14,8 @@ with open(file_path, 'r', encoding='UTF-8') as file:
         if c>=6000:
             print('DONE', c)
             break
+        elif c<1040:
+            continue
         else:
 		
             try:

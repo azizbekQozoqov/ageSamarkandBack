@@ -44,14 +44,7 @@ $(document).ready(function (e) {
         else return "#7d7d7d";
     };
 
-    function showPopUp(e) {
-        let e_props = e.target.feature.properties;
-        $('.popup .popup-item.year .popup-item-data').text(e_props.year)
-        $('.popup .popup-item.address .popup-item-data').text(e_props.address)
-        $('.popup .popup-item.floors .popup-item-data').text(e_props.floors)
-        $('.popup .popup-item.type .popup-item-data').text(e_props.type)
-        $('.popup').show();
-    };
+    
 
     function whenClicked(e) {
         showPopUp(e);
