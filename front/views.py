@@ -13,7 +13,6 @@ class Index(View):
     
         for i in buildings:
             data.append(i)
-        print(create_building_json(data[0]))
 
 
         context = {"data": data}

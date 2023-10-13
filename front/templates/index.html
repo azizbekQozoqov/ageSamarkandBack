@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>AGESAMARKAND</title>
 
     <!-- LEAFLET CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -26,7 +26,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="{% static 'map.js' %}"></script>
 
 
 
@@ -36,28 +35,88 @@
 
     <div id="map"></div>
 
-    <!-- {% for i in data %}
+    <div class="popup">
+        <div class="popup-item close">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" fill="#ffffff" onclick="$('.popup').hide()">
+                <path
+                    d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z" />
+            </svg>
+        </div>
+        <!-- <div class="popup-item images">
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://top7travel.ru/wp-content/uploads/2022/10/7867yv678f6yv786fy7v.jpg"
+                            class="d-block w-100" alt="..." />
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://fs.tonkosti.ru/7m/md/7mmdgh8iflgcs08wowogg80wg.jpg" class="d-block w-100"
+                            alt="..." />
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://fs.tonkosti.ru/7m/md/7mmdgh8iflgcs08wowogg80wg.jpg" class="d-block w-100"
+                            alt="..." />
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div> -->
+        <div class="popup-item year">
+            <span class="popup-item-title text-secondary">Year of construction: </span><span
+                class="popup-item-data"></span>
+        </div>
+        <div class="popup-item address">
+            <span class="popup-item-title text-secondary">Adress: </span><span
+                class="popup-item-data">ул.Джалалиддина Руми, Samarkand, Samarqand Tumani, Samarqand Region, 140100,
+                Uzbekistan</span>
+
+        </div>
+        <div class="popup-item floors">
+            <span class="popup-item-title text-secondary">Number of floors: </span><span
+                class="popup-item-data">1</span>
+
+        </div>
+        <div class="popup-item type">
+            <span class="popup-item-title text-secondary">Building type: </span><span
+                class="popup-item-data">Arxeterktura Merosi</span>
+
+        </div>
+    </div>
+
     <script>
-        obj = {
+        var DATA = [];
+    </script>
+    {% for i in data %}
+    <script>
+        DATA.push({
             "type": "Feature",
             "properties": {
                 "@id": "{{i.id}}",
                 "year": "{{i.year}}",
                 "address": "{{i.address}}",
                 "floors": "{{i.floors}}",
+                "floors": "{{i.floors}}",
                 "type": "{{i.type}}"
             },
             "geometry": {
                 "type": "Polygon",
-                "coordinates": "{{[i.poly.coords[0]]}}"
+                "coordinates": Array(JSON.parse("{{ i.poly.coords.0 }}".replace(/\(/g, '[').replace(/\)/g, ']')))
             },
-            "id":"{{ i.id}}",
-            "success":true
+            "id": "{{i.id}}",
+            "success": true
 
-        }
-        console.log(obj)
+        });
     </script>
-    {% endfor %} -->
+    {% endfor %}
 
 
     <!-- BOOTSTRAP JS -->
@@ -69,6 +128,7 @@
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>
 
+    <script src="{% static 'map.js' %}"></script>
 
 </body>
 

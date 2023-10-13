@@ -1,1 +1,50 @@
-#map { height: 100vh; }
+#map {
+    height: 100vh;
+}
+
+.popup {
+    position: fixed;
+    display: none;
+    bottom: 10px;
+    left: 10px;
+    z-index: 999;
+    background-color: #212121cc;
+    border: 1px solid #383838;
+    transition: all .4s ease-in-out .4s;
+    color: #ffffff;
+    padding: 1.25rem;
+}
+
+.popup-item {
+    width: 25.25rem !important
+}
+
+.popup-item.images img {
+    max-width: 100%;
+}
+
+.popup-item.close {
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: end;
+
+}
+
+.popup-item.close svg {
+    cursor: pointer;
+}
+
+.popup-item-title {
+    font-weight: 200;
+}
+
+.sidebar_Button {
+    position: absolute;
+    top: 50%;
+    z-index: 999;
+    transition: 1s;
+}
+
+.btn_top {
+    top: 150px;
+}

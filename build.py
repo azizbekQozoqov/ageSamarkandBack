@@ -11,15 +11,15 @@ with open(file_path, 'r', encoding='UTF-8') as file:
     for line in file:
         c+=1
 		# Parse the JSON data from the line
-        if c<15000:
-            print(c)
-            continue
+        if c>=6000:
+            print('DONE', c)
+            break
         else:
 		
             try:
                 # Now, 'data' contains the JSON object from the current line
 
-                url = "http://localhost:8000/api/create_building/"
+                url = "http://agesamarkand.uz/api/create_building/"
 
                 payload = json.dumps(json.loads(line.strip().rstrip(',')))
                 headers = {
