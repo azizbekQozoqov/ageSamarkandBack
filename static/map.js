@@ -12,7 +12,7 @@ $(document).ready(function (e) {
         minZoom: 13
     });
 
-    var buildingsLayer = L.tileLayer(`${endpoint}/api/{z}/{x}/{y}.png/${start_year}/${end_year}`, {
+    var buildingsLayer = L.tileLayer(`${endpoint}/api/{z}/{x}/{y}.png/0/2025`, {
         minZoom: 13
     });
 
