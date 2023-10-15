@@ -1,0 +1,16 @@
+<Map>
+  <Layer name="multipolygon_layer">
+    <StyleName>multipolygon_style</StyleName>
+    <Datasource>
+      <Parameter name="type">postgis</Parameter>
+      <Parameter name="dbname">ages</Parameter>
+      <Parameter name="host">localhost</Parameter>
+      <Parameter name="port">5432</Parameter>
+      <Parameter name="user">said_azim</Parameter>
+      <Parameter name="password">59764172</Parameter>
+      <Parameter name="table">data_building</Parameter>
+      <Parameter name="geometry_field">poly</Parameter>
+      <Parameter name="srid">4326</Parameter>
+    </Datasource>
+  </Layer>
+</Map>
