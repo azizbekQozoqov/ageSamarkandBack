@@ -1,12 +1,16 @@
 import json
 from django.shortcuts import render
 from django.views.generic import View
-from django.http import JsonResponse, request
+from django.http import HttpResponse, JsonResponse, request
 
 from django.contrib.gis.measure import D
 from django.contrib.gis.geos import Point, Polygon
 
 from data.models import Building, BuildingType
+
+# Mapnik
+import mapnik # type: ignore
+from .tools import calculate_bbox, colorize
 
 # Create your views here.
 
@@ -82,6 +86,22 @@ class UpdateBuilding(View):
             building[0].save()
             
             return JsonResponse({'success': True, 'buildings':create_building_json(building[0])})
+
+
+def Tile(request, z, x, y, start = 1000, end = 2023):
+    map = mapnik.Map(256, 198)
+    mapnik.load_map(map, 'my.xml')
+    map.append_style('multipolygon_style', colorize(start, end))
+
+    bbox = calculate_bbox(z, x, y)
+    map.zoom_to_box(bbox)
+
+    image = mapnik.Image(map.width, map.height)
+    mapnik.render(map, image)
+
+    response = HttpResponse(content_type='image/png')
+    response.write(image.tostring('png'))
+    return response
 
 class GetAllBuildings(View):
     def get(self, request, *args, **kwargs):

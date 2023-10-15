@@ -127,6 +127,12 @@
             {% endfor %}
           </select>
         </div>
+        <div class="popup-item images">
+          <span class="popup-item-title text-secondary">Upload image: </span>
+          <br>
+          <input class="popup-item-data" name="images" type="file" />
+          
+        </div>
         <input type="submit" value="UPDATE" />
       </form>
     </div>
@@ -146,7 +152,7 @@
           }
         }
 
-        console.log(e_props.type)
+        console.log(e_props.type, e)
         $(".popup").show();
         console.log(e_props);
       }
@@ -162,6 +168,7 @@
           floors: "{{i.floors}}",
           floors: "{{i.floors}}",
           type: "{{i.type}}",
+          // images: "{{i.images}}",
         },
         geometry: {
           type: "Polygon",

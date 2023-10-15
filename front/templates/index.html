@@ -92,41 +92,6 @@
         </div>
     </div>
 
-    <script>
-        var DATA = [];
-        function showPopUp(e) {
-            let e_props = e.target.feature.properties;
-            $('.popup .popup-item.year .popup-item-data').text(e_props.year)
-            $('.popup .popup-item.address .popup-item-data').text(e_props.address)
-            $('.popup .popup-item.floors .popup-item-data').text(e_props.floors)
-            $('.popup .popup-item.type .popup-item-data').text(e_props.type)
-            $('.popup').show();
-        };
-    </script>
-    {% for i in data %}
-    <script>
-        DATA.push({
-            "type": "Feature",
-            "properties": {
-                "@id": "{{i.id}}",
-                "year": "{{i.year}}",
-                "address": "{{i.address}}",
-                "floors": "{{i.floors}}",
-                "floors": "{{i.floors}}",
-                "type": "{{i.type}}"
-            },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": Array(JSON.parse("{{ i.poly.coords.0 }}".replace(/\(/g, '[').replace(/\)/g, ']')))
-            },
-            "id": "{{i.id}}",
-            "success": true
-
-        });
-    </script>
-    {% endfor %}
-
-
     <!-- BOOTSTRAP JS -->
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
