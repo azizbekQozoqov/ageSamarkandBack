@@ -93,9 +93,9 @@ WSGI_APPLICATION = 'ageSamarkandBack.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'ageSamarkandData',
-        'USER': 'postgres',
-        'PASSWORD': 'turk32',
+        'NAME': 'agesam',
+        'USER': 'markaz',
+        'PASSWORD': '59764172a',
         'HOST': 'localhost',
         'PORT': '5432'
     }
