@@ -81,8 +81,8 @@ TEMPLATES = [
         },
     },
 ]
-GDAL_LIBRARY_PATH = r"C:\Users\Azizbek\Documents\ageSamarkand\ageSamarkandBack\env\Lib\site-packages\osgeo\gdal304.dll" # comment it before deploy
-GEOS_LIBRARY_PATH = r"C:\Users\Azizbek\Documents\ageSamarkand\ageSamarkandBack\env\Lib\site-packages\osgeo\geos_c.dll" # comment it before deploy
+# GDAL_LIBRARY_PATH = r"C:\Users\Azizbek\Documents\ageSamarkand\ageSamarkandBack\env\Lib\site-packages\osgeo\gdal304.dll" # comment it before deploy
+# GEOS_LIBRARY_PATH = r"C:\Users\Azizbek\Documents\ageSamarkand\ageSamarkandBack\env\Lib\site-packages\osgeo\geos_c.dll" # comment it before deploy
 
 WSGI_APPLICATION = 'ageSamarkandBack.wsgi.application'
 
